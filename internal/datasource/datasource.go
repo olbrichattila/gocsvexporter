@@ -4,9 +4,6 @@ package datasource
 import (
 	"database/sql"
 	"fmt"
-
-	// This blank import is necessary to have the driver
-	_ "github.com/mattn/go-sqlite3"
 )
 
 // DBer is the database manager
