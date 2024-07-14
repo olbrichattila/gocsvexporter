@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	envFileName     = "./.env"
+	envFileName     = ".env.csvexporter"
 	envDBConnection = "DB_CONNECTION"
 	envDBUserName   = "DB_USERNAME"
 	envDBPassword   = "DB_PASSWORD"
@@ -18,7 +18,7 @@ const (
 	envDBSSLMode    = "DB_SSLMODE"
 )
 
-// Enver environment variable retrival interface
+// Enver environment variable retrieval interface
 type Enver interface {
 	DBConnection() string
 	DBUserName() string

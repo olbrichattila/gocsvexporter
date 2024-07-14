@@ -7,10 +7,20 @@ import (
 	"csvdownloader/internal/datasource"
 	"csvdownloader/internal/environment"
 	"csvdownloader/internal/exporter"
+	"flag"
 	"fmt"
+	"os"
 )
 
 func main() {
+	help := flag.Bool("help", false, "Display help")
+	flag.Parse()
+
+	if *help {
+		displayHelp()
+		os.Exit(0)
+	}
+
 	cargs := cargs.New()
 	tableName, outuptFileName, separator, err := cargs.Args()
 	if err != nil {
@@ -31,13 +41,13 @@ func main() {
 		return
 	}
 
-	connectinString, driverName, quoteSign, err := datasource.GetDbConnectionParams(env)
+	connectionString, driverName, quoteSign, err := datasource.GetDbConnectionParams(env)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	ds := datasource.New(tableName, connectinString, driverName, quoteSign)
+	ds := datasource.New(tableName, connectionString, driverName, quoteSign)
 	err = ds.Open()
 	if err != nil {
 		fmt.Println(err)
@@ -54,5 +64,5 @@ func main() {
 		return
 	}
 
-	fmt.Println("Done")
+	fmt.Printf("\nDone\n")
 }

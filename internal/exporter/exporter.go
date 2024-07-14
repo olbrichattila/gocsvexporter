@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-// New vreate a database to csv exporter
+// New creates a database to csv exporter
 func New(db datasource.DBer, csv csvexport.CsvExporter) Exporter {
 	return &exp{
 		db:  db,
@@ -16,7 +16,7 @@ func New(db datasource.DBer, csv csvexport.CsvExporter) Exporter {
 	}
 }
 
-// Exporter is the interface retuned by new exporter
+// Exporter is the interface returned by new exporter
 type Exporter interface {
 	Export() error
 }

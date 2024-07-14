@@ -28,7 +28,7 @@ const (
 	dbConnectionTypeFirebird = "firebird"
 )
 
-// GetDbConnectionParams converts to database connection string, and quotes from .env or linux export
+// GetDbConnectionParams converts to database connection string, and quotes from .env.csvexporter or linux export
 // returns connection string, driver name, quote character and error if failed
 func GetDbConnectionParams(env environment.Enver) (string, string, string, error) {
 	switch env.DBConnection() {

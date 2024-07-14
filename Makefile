@@ -1,13 +1,13 @@
 run:
 	go run ./cmd/ customers test.csv
 switch-sqlite:
-	cp .env.sqlite.example .env
+	cp .env.sqlite.example .env.csvexporter
 switch-mysql:
-	cp .env.mysql.example .env
+	cp .env.mysql.example .env.csvexporter
 switch-pgsql:
-	cp .env.pgsql.example .env
+	cp .env.pgsql.example .env.csvexporter
 switch-firebird:
-	cp .env.firebird.example .env
+	cp .env.firebird.example .env.csvexporter
 lint:
 	gocritic check ./...
 	revive ./...

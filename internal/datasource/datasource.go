@@ -4,6 +4,7 @@ package datasource
 import (
 	"database/sql"
 	"fmt"
+	"strconv"
 )
 
 // DBer is the database manager
@@ -19,46 +20,40 @@ type DBer interface {
 }
 
 type datasoure struct {
-	tableName       string
-	connectinString string
-	driverName      string
-	quoteSign       string
-	rowCount        int
-	db              *sql.DB
-	stmt            *sql.Stmt
-	rows            *sql.Rows
-	fieldCount      int
-	fieldNames      []string
-	fields          []interface{}
-	row             []string
-	lastError       error
+	tableName        string
+	connectionString string
+	driverName       string
+	quoteSign        string
+	rowCount         int
+	db               *sql.DB
+	stmt             *sql.Stmt
+	rows             *sql.Rows
+	fieldCount       int
+	fieldNames       []string
+	fields           []interface{}
+	row              []string
+	lastError        error
 }
 
 // New creates a new database manager
 func New(
 	tableName string,
-	connectinString string,
+	connectionString string,
 	driverName string,
 	quoteSign string,
 ) DBer {
 	return &datasoure{
-		tableName:       tableName,
-		connectinString: connectinString,
-		driverName:      driverName,
-		quoteSign:       quoteSign,
+		tableName:        tableName,
+		connectionString: connectionString,
+		driverName:       driverName,
+		quoteSign:        quoteSign,
 	}
 }
 
 func (t *datasoure) Open() error {
 	var err error
-	// TODO this dependency should be inversed
-	// connectinString, driverName, quoteSign, err := getDbConnectionParams(environment.New())
-	// if err != nil {
-	// 	return err
-	// }
-	/// t.quoteSign = quoteSign
 
-	t.db, err = sql.Open(t.driverName, t.connectinString)
+	t.db, err = sql.Open(t.driverName, t.connectionString)
 	if err != nil {
 		return err
 	}
@@ -131,7 +126,20 @@ func (t *datasoure) Row() []string {
 			continue
 		}
 
-		t.row[i] = fmt.Sprintf("%v", field)
+		switch v := field.(type) {
+		case int:
+			t.row[i] = strconv.Itoa(v)
+		case float64:
+			t.row[i] = strconv.FormatFloat(v, 'f', -1, 64)
+		case float32:
+			t.row[i] = strconv.FormatFloat(float64(v), 'f', -1, 32)
+		case string:
+			t.row[i] = v
+		case []byte:
+			t.row[i] = string(v)
+		default:
+			t.row[i] = fmt.Sprintf("%v", v)
+		}
 	}
 
 	return t.row

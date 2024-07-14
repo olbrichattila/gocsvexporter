@@ -23,7 +23,7 @@ type arg struct {
 func (*arg) Args() (string, string, rune, error) {
 	separator := ','
 	if len(os.Args) < 3 {
-		return "", "", ',', fmt.Errorf("need least 2 command line arguments, <tableName> <outputFileName> <separator> where separator is optional and default to comma")
+		return "", "", ',', fmt.Errorf("need least 2 command line arguments, <tableName> <outputFileName> <separator> where separator is optional and default to comma\nFor more info: csvexporter --help")
 	}
 
 	if len(os.Args) > 3 {
