@@ -4,7 +4,7 @@ This little utility exports database table from a database to a CSV file
 
 ## Install:
 ```
-go install github.com/olbrichattila/gocsvexporter/cmd/csvexporter
+go install github.com/olbrichattila/gocsvexporter/cmd/csvexporter@latest
 ```
 
 Usage: ```csvexporter . <tablebane> <csvfilename> <separator>```
