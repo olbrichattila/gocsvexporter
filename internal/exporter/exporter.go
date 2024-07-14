@@ -2,10 +2,12 @@
 package exporter
 
 import (
-	csvexport "csvdownloader/internal/csv"
-	"csvdownloader/internal/datasource"
 	"fmt"
 	"strings"
+
+	csvexport "github.com/olbrichattila/gocsvexporter/internal/csv"
+
+	"github.com/olbrichattila/gocsvexporter/internal/datasource"
 )
 
 // New creates a database to csv exporter

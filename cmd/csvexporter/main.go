@@ -2,14 +2,15 @@
 package main
 
 import (
-	"csvdownloader/internal/cargs"
-	csvmanager "csvdownloader/internal/csv"
-	"csvdownloader/internal/datasource"
-	"csvdownloader/internal/environment"
-	"csvdownloader/internal/exporter"
 	"flag"
 	"fmt"
 	"os"
+
+	"github.com/olbrichattila/gocsvexporter/internal/cargs"
+	csvmanager "github.com/olbrichattila/gocsvexporter/internal/csv"
+	"github.com/olbrichattila/gocsvexporter/internal/datasource"
+	"github.com/olbrichattila/gocsvexporter/internal/environment"
+	"github.com/olbrichattila/gocsvexporter/internal/exporter"
 )
 
 func main() {
